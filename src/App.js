@@ -2,14 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './actions'
 
+// Components
+import Input from './components/Input';
+
+
+// Styles
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
 class App extends Component {
   render() {
     const { state } = this.props;
     return (
-      <div className="App">
-        App here
+      <div className="container">
+        <Input />
       </div>
     );
   }
