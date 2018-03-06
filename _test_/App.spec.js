@@ -10,7 +10,25 @@ configure({ adapter: new Adapter() }); // To make enzyme happy
 
 
 // Components
-import App from '../src/App';
+import AppConnect, { App } from '../src/App';
+
+describe('App Redux',() => {
+  const initialState = {
+    list: []
+  }
+  const mockStore = configureStore()
+  let store
+  let container
+
+  beforeEach(() => {
+    store = mockStore(initialState)
+    container = mount(<Provider store={store}><AppConnect /></Provider>)
+  })
+
+  it('Should render the App component', () => {
+    expect(container.find(AppConnect).length).toEqual(1)
+  });
+});
 
 describe('Testing <App /> component', () => {
   const initialState = { list: [] };
@@ -21,10 +39,16 @@ describe('Testing <App /> component', () => {
 
   beforeEach(() => {
     store = mockStore(initialState)
-    container = mount(<App store={store} />);
+    container = mount(<AppConnect store={store} />);
   })
 
   it('Should render <App /> component with no error', () => {
     expect(container.length).toEqual(1)
   });
-})
+
+  it('Render the App component with initial state', () => {
+    console.log('???', container.find(App))
+    expect(container.find(App).prop('state')).toEqual(initialState.list)
+  });
+
+});

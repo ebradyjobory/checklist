@@ -10,7 +10,7 @@ import Input from './components/Input';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
-class App extends Component {
+export class App extends Component {
   render() {
     const { state } = this.props;
     return (
@@ -21,7 +21,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ state: state.reducer })
+const mapStateToProps = ({ reducer }) => ({ state: reducer })
 
 export default connect(mapStateToProps)(App)
 
