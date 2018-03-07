@@ -5,3 +5,10 @@ export const addItem = (item: string) => {
     item, 
   }
 }
+
+export const toggleItem = (id: Number, checked: Boolean) => {
+  return {
+    type: 'TOGGLE_ITEM',
+    id, checked, 
+  }
+}

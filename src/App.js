@@ -24,6 +24,9 @@ export class App extends Component {
         />
         <List
           list={state.list}
+          onItemCheck={
+            (checked, id) => dispatch(actions.toggleItem(checked, id))
+          }
         />
       </div>
     );

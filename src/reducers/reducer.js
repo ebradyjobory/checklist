@@ -10,6 +10,13 @@ export default function appState(state = initialState, action) {
       return update(state, {
         list: { $push: [{ id: _.size(state.list), item: action.item, checked: false }] },
       })
+    case 'TOGGLE_ITEM':
+      return update(state, {
+        list: { $set: state.list.map(l => {
+          if (l.id === action.id) l.checked = action.checked
+          return l
+        })},
+      })
     default:
       return state
   }
