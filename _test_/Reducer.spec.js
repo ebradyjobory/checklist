@@ -8,12 +8,13 @@ describe('Reducer',() => {
   it('Should resuce ADD_ITEM action', () => {
     const action = {
       type: 'ADD_ITEM',
-      text: 'read Dune'
+      item: 'read Dune'
     }
     expect(reducer(initialState, action))
     .toEqual({
       list: [{
-        text: action.text,
+        id: 0,
+        item: action.item,
         checked: false,
       }]
     })

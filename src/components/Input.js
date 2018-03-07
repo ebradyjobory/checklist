@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 
 type PropTypes = {
-  list: Array<Object>,
   onAddItem: Function,
 }
 

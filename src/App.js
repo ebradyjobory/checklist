@@ -4,6 +4,7 @@ import * as actions from './actions'
 
 // Components
 import Input from './components/Input';
+import List from './components/List';
 
 
 // Styles
@@ -17,10 +18,12 @@ export class App extends Component {
     return (
       <div className="container">
         <Input
-          list={state.list}
           onAddItem={
             item => dispatch(actions.addItem(item))
           }
+        />
+        <List
+          list={state.list}
         />
       </div>
     );
