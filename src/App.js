@@ -15,15 +15,15 @@ export class App extends Component {
     const { state } = this.props;
     return (
       <div className="container">
-        <Input />
+        <Input list={state.list} />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ reducer }) => ({ state: reducer })
+const mapStateToProps = ({ reducer }) => ({ state: reducer });
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);
 
   // <h3>
   //   Create a 'checklist' app that allows the following operations:

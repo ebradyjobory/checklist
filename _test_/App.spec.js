@@ -11,22 +11,23 @@ configure({ adapter: new Adapter() }); // To make enzyme happy
 
 // Components
 import AppConnect, { App } from '../src/App';
+import Input from '../src/components/Input';
 
 describe('App Redux',() => {
   const initialState = {
     list: []
   }
-  const mockStore = configureStore()
-  let store
-  let container
+  const mockStore = configureStore();
+  let store;
+  let container;
 
   beforeEach(() => {
-    store = mockStore(initialState)
-    container = mount(<Provider store={store}><AppConnect /></Provider>)
+    store = mockStore(initialState);
+    container = shallow(<Provider store={store}><AppConnect /></Provider>);
   })
 
   it('Should render the App component', () => {
-    expect(container.find(AppConnect).length).toEqual(1)
+    expect(container.find(AppConnect).length).toEqual(1);
   });
 });
 
@@ -36,19 +37,34 @@ describe('Testing <App /> component', () => {
 
   let store;
   let container;
+  let inputComponent;
 
   beforeEach(() => {
     store = mockStore(initialState)
-    container = mount(<AppConnect store={store} />);
+    container = shallow(<AppConnect store={store} />);
+    inputComponent = shallow(<Input list={initialState.list} />);
   })
 
   it('Should render <App /> component with no error', () => {
     expect(container.length).toEqual(1)
   });
 
-  it('Render the App component with initial state', () => {
-    console.log('???', container.find(App))
-    expect(container.find(App).prop('state')).toEqual(initialState.list)
+  it('Should render the <App /> component with initial state', () => {
+    const state = container.instance().props.store.getState()
+    expect(state.list).toEqual(initialState.list)
+  });
+  
+  it('<Input/> component should have input tag', () => {
+    expect(
+      inputComponent.find('input')
+                    .at(0)
+                    .equals(<input type='text' ref='item-list' placeholder='Enter an item' />)
+    ).toBe(true)
+  });
+
+  it('<Input/> component should expect a `list` props', () => {
+    console.log(inputComponent.instance().props)
+    expect(inputComponent.instance().props).toEqual({list: []})
   });
 
 });

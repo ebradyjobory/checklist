@@ -4,7 +4,7 @@ export default class Input extends Component {
   render() {
     return (
       <div>
-        input here
+        <input type='text' ref='item-list' placeholder='Enter an item' />
       </div>
     )
   }
