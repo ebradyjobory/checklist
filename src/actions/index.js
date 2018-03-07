@@ -1,6 +1,7 @@
-export const randomAction = () => {
+// @flow
+export const addItem = (item: string) => {
   return {
-    type: 'randomAction',
-    output: {}, 
+    type: 'ADD_ITEM',
+    item, 
   }
 }

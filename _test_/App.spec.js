@@ -57,9 +57,8 @@ describe('Testing <App /> component', () => {
   it('<Input/> component should have input tag', () => {
     expect(
       inputComponent.find('input')
-                    .at(0)
-                    .equals(<input type='text' ref='item-list' placeholder='Enter an item' />)
-    ).toBe(true)
+                    .exists()
+    ).toEqual(true)
   });
 
   it('<Input/> component should expect a `list` props', () => {

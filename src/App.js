@@ -15,7 +15,12 @@ export class App extends Component {
     const { state } = this.props;
     return (
       <div className="container">
-        <Input list={state.list} />
+        <Input
+          list={state.list}
+          onAddItem={
+            item => actions.addItem(item)
+          }
+        />
       </div>
     );
   }
