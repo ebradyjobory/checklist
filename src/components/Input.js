@@ -17,11 +17,12 @@ export default class Input extends Component<PropTypes, StateTypes> {
   }
   render() {
     return (
-      <div>
+      <div className='form-group'>
         <input
           type='text'
           ref='item-list'
-          placeholder='Enter an item'
+          placeholder='Type a task and hit enter'
+          className='form-control'
           onKeyDown={this.onKeyDown}
         />
       </div>

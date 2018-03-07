@@ -12,13 +12,14 @@ import './App.css';
 
 export class App extends Component {
   render() {
-    const { state } = this.props;
+    const { state, dispatch } = this.props;
+    console.log(state)
     return (
       <div className="container">
         <Input
           list={state.list}
           onAddItem={
-            item => actions.addItem(item)
+            item => dispatch(actions.addItem(item))
           }
         />
       </div>
