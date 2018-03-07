@@ -5,14 +5,24 @@ type PropTypes = {
   onAddItem: Function,
 }
 
-type StateTypes = {}
+type StateTypes = {
+  value: string,
+}
 
 export default class Input extends Component<PropTypes, StateTypes> {
+  state = {
+    value: ''
+  }
   onKeyDown = (e: SyntheticEvent<*>) => {
     const { onAddItem } = this.props
     if (e.target.value && (e.keyCode === 9 || e.keyCode === 13)) {
       onAddItem(e.target.value)
+      // Reset input field value
+      this.setState({ value: '' })
     }
+  }
+  onChange = (e: SyntheticEvent<*>) => {
+    this.setState({ value: e.target.value })
   }
   render() {
     return (
@@ -20,9 +30,11 @@ export default class Input extends Component<PropTypes, StateTypes> {
         <input
           type='text'
           ref='item-list'
+          value={this.state.value}
           placeholder='Type a task and hit enter'
           className='form-control'
           onKeyDown={this.onKeyDown}
+          onChange={this.onChange}
         />
       </div>
     )
