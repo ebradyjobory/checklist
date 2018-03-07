@@ -17,6 +17,13 @@ export default function appState(state = initialState, action) {
           return l
         })},
       })
+    case 'TOGGLE_ALL':
+      return update(state, {
+        list: { $set: state.list.map(l => {
+          l.checked = !l.checked
+          return l
+        })},
+      })
     default:
       return state
   }

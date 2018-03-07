@@ -19,7 +19,7 @@ describe('Reducer',() => {
         checked: false,
       }]
     })
-  });
+  })
   it('Should resuce TOGGLE_ITEM action', () => {
     // Add an item
     const action1 = {
@@ -35,5 +35,26 @@ describe('Reducer',() => {
     }
     expect(_.findWhere(reducer(newState, action2).list, { id: 0 }).checked)
     .toEqual(true)
-  });
+  })
+  it('Should resuce TOGGLE_ALL action', () => {
+    // Add two items
+    let state = initialState
+    const action1 = {
+      type: 'ADD_ITEM',
+      item: 'read Dune'
+    }
+    const action2 = {
+      type: 'ADD_ITEM',
+      item: 'read another book'
+    }
+    state = reducer(state, action1)
+    state = reducer(state, action2)
+    // Toggle All
+    const action3 = {
+      type: 'TOGGLE_ALL',
+    }
+    state = reducer(state, action3)
+    expect(state.list.length).toBe(2)
+    expect(_.all(state.list, l => l.checked)).toBe(true)
+  })
 });

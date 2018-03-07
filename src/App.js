@@ -27,6 +27,7 @@ export class App extends Component {
           onItemCheck={
             (checked, id) => dispatch(actions.toggleItem(checked, id))
           }
+          onToggleAll={ () => dispatch(actions.toggleAll()) }
         />
       </div>
     );

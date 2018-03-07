@@ -12,3 +12,9 @@ export const toggleItem = (id: Number, checked: Boolean) => {
     id, checked, 
   }
 }
+
+export const toggleAll = () => {
+  return {
+    type: 'TOGGLE_ALL',
+  }
+}
