@@ -1,16 +1,15 @@
-import reducer, { initialState } from '../src/reducers/reducer';
-import configureStore from 'redux-mock-store';
-import _ from 'underscore';
+import reducer, { initialState } from '../src/reducers/reducer'
+import configureStore from 'redux-mock-store'
+import _ from 'underscore'
+
+import { createAction } from './helpers'
 
 describe('Reducer',() => {
   it('Should retuen inital state', () => {
     expect(reducer(undefined, {})).toEqual(initialState)
   })
   it('Should resuce ADD_ITEM action', () => {
-    const action = {
-      type: 'ADD_ITEM',
-      item: 'read Dune'
-    }
+    const action = createAction('ADD_ITEM', {item: 'read Dune'})
     expect(reducer(initialState, action))
     .toEqual({
       list: [{
@@ -22,38 +21,23 @@ describe('Reducer',() => {
   })
   it('Should resuce TOGGLE_ITEM action', () => {
     // Add an item
-    const action1 = {
-      type: 'ADD_ITEM',
-      item: 'read Dune'
-    }
-    const newState = reducer(initialState, action1)
+    let action = createAction('ADD_ITEM', {item: 'read Dune'})
+    const newState = reducer(initialState, action)
     // Toggle the added item
-    const action2 = {
-      type: 'TOGGLE_ITEM',
-      id: 0,
-      checked: true,
-    }
-    expect(_.findWhere(reducer(newState, action2).list, { id: 0 }).checked)
+    action = createAction('TOGGLE_ITEM', { id: 0, checked: true })
+    expect(_.findWhere(reducer(newState, action).list, { id: 0 }).checked)
     .toEqual(true)
   })
   it('Should resuce TOGGLE_ALL action', () => {
     // Add two items
     let state = initialState
-    const action1 = {
-      type: 'ADD_ITEM',
-      item: 'read Dune'
-    }
-    const action2 = {
-      type: 'ADD_ITEM',
-      item: 'read another book'
-    }
-    state = reducer(state, action1)
-    state = reducer(state, action2)
+    let action = createAction('ADD_ITEM', {item: 'read Dune'})
+    state = reducer(state, action)
+    action = createAction('ADD_ITEM', {item: 'read another book'})
+    state = reducer(state, action)
     // Toggle All
-    const action3 = {
-      type: 'TOGGLE_ALL',
-    }
-    state = reducer(state, action3)
+    action = createAction('TOGGLE_ALL', {})
+    state = reducer(state, action)
     expect(state.list.length).toBe(2)
     expect(_.all(state.list, l => l.checked)).toBe(true)
   })
