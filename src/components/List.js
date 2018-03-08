@@ -1,5 +1,6 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import _ from 'underscore'
 
 type PropTypes = {
   list: Array<Object>,
@@ -12,15 +13,15 @@ type StateTypes = {}
 
 export default class Input extends Component<PropTypes, StateTypes> {
   onItemCheck = (e: SyntheticEvent<*>, id: Number) => {
-    const { onItemCheck } = this.props;
-    const { checked } = e.target;
-    onItemCheck(id, checked);
+    const { onItemCheck } = this.props
+    const { checked } = e.target
+    onItemCheck(id, checked)
   }
   render() {
     const { list, listChecked, onToggleAll } = this.props
     return (
       <div className='custom-control custom-checkbox mb-3'>
-        <div>
+        { !_.isEmpty(list) && <div>
           <input
             type='checkbox'
             className='form-check-input'
@@ -29,7 +30,7 @@ export default class Input extends Component<PropTypes, StateTypes> {
             onChange={onToggleAll}
           />
           <label className='form-check-label' htmlFor='check-all'>Check all</label>
-        </div>
+        </div> }
         <hr></hr>
         {
           list.map(l => {

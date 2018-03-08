@@ -41,4 +41,4 @@ describe('Reducer',() => {
     expect(state.list.length).toBe(2)
     expect(_.all(state.list, l => l.checked)).toBe(true)
   })
-});
+})

@@ -13,4 +13,4 @@ describe('Actions',() => {
   it('Should create `toggleAll action', () => {
     expect(actions.toggleAll()).toEqual({ type: 'TOGGLE_ALL' })
   })
-});
+})

@@ -14,7 +14,6 @@ import './App.css';
 export class App extends Component {
   render() {
     const { state, dispatch } = this.props;
-    console.log(state)
     return (
       <div className="container">
         <Input
