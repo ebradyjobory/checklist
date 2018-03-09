@@ -10,15 +10,13 @@ describe('Test reducers',() => {
   })
   it('Should reduce ADD_ITEM action', () => {
     const action = createAction('ADD_ITEM', {item: 'read Dune'})
-    expect(reducer(initialState, action))
-    .toEqual({
-      list: [{
+    expect(reducer(initialState, action).list)
+    .toEqual([{
         id: 0,
         item: action.item,
         checked: false,
         order: 1,
-      }]
-    })
+    }])
   })
   it('Should reduce ADD_ITEM action with the right order', () => {
     let action = createAction('ADD_ITEM', {item: 'read Dune'})

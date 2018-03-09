@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from './actions'
@@ -12,7 +14,14 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './App.css'
 import '../node_modules/font-awesome/css/font-awesome.css'
 
-export class App extends Component {
+
+type PropTypes = {
+  state: Object,
+  dispatch: Function,
+}
+type StateTypes = {}
+
+export class App extends Component<PropTypes, StateTypes> {
   render() {
     const { state, dispatch } = this.props
     return (
@@ -24,14 +33,15 @@ export class App extends Component {
         />
         <List
           list={state.list}
+          listChecked={state.listChecked}
           onItemCheck={
-            (checked, id) => dispatch(actions.toggleItem(checked, id))
+            (id: Number, checked: Boolean) => dispatch(actions.toggleItem(id, checked))
           }
           onItemDelete={
-            id => dispatch(actions.deleteItem(id))
+            (id: Number) => dispatch(actions.deleteItem(id))
           }
-          onToggleAll={ () => dispatch(actions.toggleAll()) }
-          onOrderChnage= { (direction, id) => dispatch(actions.changeOrder(direction, id)) }
+          onToggleAll={ (e: SyntheticEvent<HTMLButtonElement>) => dispatch(actions.toggleAll()) }
+          onOrderChnage= { (direction: number, id: Number) => dispatch(actions.changeOrder(direction, id)) }
         />
       </div>
     )

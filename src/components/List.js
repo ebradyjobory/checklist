@@ -62,12 +62,13 @@ export default class Input extends Component<PropTypes, StateTypes> {
                 <div className='trash'>
                   <i
                     className='fa fa-trash'
+                    title='delete item'
                     onClick={() => this.onItemDelete(l.id) }>
                   </i>
                 </div>
                 <div className='order-btns'>
-                  { ! itemIsInPosition(list, l.id, 'first') && <i className='fa fa-sort-up' onClick={ () => this.onOrderChnage(1, l.id) }></i> }
-                  { ! itemIsInPosition(list, l.id, 'last') && <i className='fa fa-sort-down' onClick={ () => this.onOrderChnage(-1, l.id) }></i> }
+                  { ! itemIsInPosition(list, l.id, 'first') && <i className='fa fa-sort-up' title='move item up' onClick={ () => this.onOrderChnage(1, l.id) }></i> }
+                  { ! itemIsInPosition(list, l.id, 'last') && <i className='fa fa-sort-down' title='move item down' onClick={ () => this.onOrderChnage(-1, l.id) }></i> }
                 </div>
               </div>
             )

@@ -5,6 +5,7 @@ import { swapOrders } from '../helpers'
 
 export const initialState = {
   list: [], // An array of object { text: `string`, checked: `bool` }
+  listChecked: false,
 }
 export default function appState(state = initialState, action) {
   switch(action.type) {
@@ -25,8 +26,10 @@ export default function appState(state = initialState, action) {
       })
     case 'TOGGLE_ALL':
       return update(state, {
+        listChecked: { $set: !state.listChecked },
         list: { $set: state.list.map(l => {
-          l.checked = !l.checked
+          if (l.checked && state.listChecked) l.checked = false
+          if (!l.checked && !state.listChecked) l.checked = true
           return l
         })},
       })
