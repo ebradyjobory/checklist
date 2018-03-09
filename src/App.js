@@ -31,6 +31,7 @@ export class App extends Component {
             id => dispatch(actions.deleteItem(id))
           }
           onToggleAll={ () => dispatch(actions.toggleAll()) }
+          onOrderChnage= { (direction, id) => dispatch(actions.changeOrder(direction, id)) }
         />
       </div>
     )

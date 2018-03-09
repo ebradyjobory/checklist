@@ -5,7 +5,7 @@ import Adapter from 'enzyme-adapter-react-16'
 import {Provider} from 'react-redux'
 import reducer, { initialState } from '../src/reducers/reducer'
 import { createStore } from 'redux'
-import { createAction } from './helpers'
+import { createAction } from '../src/helpers'
 import * as actions from '../src/actions' 
 
 // Configure Enzyme

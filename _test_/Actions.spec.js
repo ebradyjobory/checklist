@@ -18,4 +18,9 @@ describe('Test actions', () => {
   it('Should create `toggleAll action', () => {
     expect(actions.toggleAll()).toEqual({ type: 'TOGGLE_ALL' })
   })
+  it('Should create `changeOrder action', () => {
+    const id = 0
+    const direction = 1
+    expect(actions.changeOrder(direction, id)).toEqual({ type: 'CHANGE_ORDER', id, direction })
+  })
 })

@@ -1,6 +1,8 @@
 import update from 'react-addons-update'; // immutability helper
 import _ from 'underscore';
 
+import { swapOrders } from '../helpers'
+
 export const initialState = {
   list: [], // An array of object { text: `string`, checked: `bool` }
 }
@@ -27,6 +29,10 @@ export default function appState(state = initialState, action) {
           l.checked = !l.checked
           return l
         })},
+      })
+    case 'CHANGE_ORDER':
+      return update(state, {
+        list: { $set: swapOrders(state.list, action.id, action.direction) },
       })
     default:
       return state

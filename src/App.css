@@ -27,14 +27,18 @@ body {
   margin: 50px auto;
 }
 
+.fa {
+  cursor: pointer;
+}
+
 i.fa.fa-trash {
-  float: right;
   font-size: 1.5rem;
   color: #ff6b81;
   cursor: pointer;
 }
 
 .item-list {
+  display: flex;
   background: #ffffff;
   box-shadow: 1px 1px 2px #888888;
   padding: 32px 29px 31px 51px;
@@ -43,6 +47,17 @@ i.fa.fa-trash {
 
 .check-all {
   margin: 32px 51px;
+}
+
+.order-btns {
+  display: flex;
+  flex: 1;
+  flex-flow: column;
+}
+
+.fa.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 @keyframes App-logo-spin {

@@ -25,3 +25,9 @@ export const toggleAll = () => {
     type: 'TOGGLE_ALL',
   }
 }
+export const changeOrder = (direction: number, id: Number) => {
+  return {
+    type: 'CHANGE_ORDER',
+    direction, id,
+  }
+}

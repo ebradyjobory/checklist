@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react'
 import _ from 'underscore'
+import { itemIsInPosition } from '../helpers'
 
 type PropTypes = {
   list: Array<Object>,
@@ -8,6 +9,7 @@ type PropTypes = {
   onItemCheck: Function,
   onToggleAll: Function,
   onItemDelete: Function,
+  onOrderChnage: Function,
 }
 
 type StateTypes = {}
@@ -21,6 +23,10 @@ export default class Input extends Component<PropTypes, StateTypes> {
   onItemDelete = (id: Number) => {
     const { onItemDelete } = this.props
     onItemDelete(id)
+  }
+  onOrderChnage = (direction: number, id: Number) => {
+    const { onOrderChnage } = this.props
+    onOrderChnage(direction, id)
   }
   render() {
     const { list, listChecked, onToggleAll } = this.props
@@ -40,7 +46,7 @@ export default class Input extends Component<PropTypes, StateTypes> {
         }
         <hr></hr>
         {
-          list.map(l => {
+          _.sortBy(list, 'order').map(l => {
             return (
               <div className='item-list' key={l.id}>
                 <input
@@ -51,6 +57,10 @@ export default class Input extends Component<PropTypes, StateTypes> {
                   onChange={ (e) => this.onItemCheck(e, l.id) }
                 />
                 <label className='form-check-label' htmlFor={`item-${l.id}`} >{l.item}</label>
+                <div className='order-btns'>
+                  { ! itemIsInPosition(list, l.id, 'first') && <i className='fa fa-sort-up' onClick={ () => this.onOrderChnage(1, l.id) }></i> }
+                  { ! itemIsInPosition(list, l.id, 'last') && <i className='fa fa-sort-down' onClick={ () => this.onOrderChnage(-1, l.id) }></i> }
+                </div>
                 <i
                   className='fa fa-trash'
                   onClick={() => this.onItemDelete(l.id) }

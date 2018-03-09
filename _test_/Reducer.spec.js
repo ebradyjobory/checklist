@@ -2,7 +2,7 @@ import reducer, { initialState } from '../src/reducers/reducer'
 import configureStore from 'redux-mock-store'
 import _ from 'underscore'
 
-import { createAction } from './helpers'
+import { createAction } from '../src/helpers'
 
 describe('Test reducers',() => {
   it('Should retuen inital state', () => {
@@ -60,5 +60,21 @@ describe('Test reducers',() => {
     state = reducer(state, action)
     expect(state.list.length).toBe(2)
     expect(_.all(state.list, l => l.checked)).toBe(true)
+  })
+  it('Should reduce CHANGE_ORDER action', () => {
+    // Add two items
+    let state = initialState
+    let action = createAction('ADD_ITEM', {item: 'read Dune'})
+    state = reducer(state, action)
+    expect(state.list[0].order).toBe(1)
+    action = createAction('ADD_ITEM', {item: 'read another book'})
+    state = reducer(state, action)
+    expect(state.list[1].order).toBe(2)
+    // Change order
+    action = createAction('CHANGE_ORDER', { id: 0, direction: -1 })
+    state = reducer(state, action)
+    expect(state.list[0].order).toBe(2)
+    // Other items should be reordered
+    expect(state.list[1].order).toBe(1)
   })
 })
