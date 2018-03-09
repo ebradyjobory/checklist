@@ -8,7 +8,7 @@ export default function appState(state = initialState, action) {
   switch(action.type) {
     case 'ADD_ITEM':
       return update(state, {
-        list: { $push: [{ id: _.size(state.list), item: action.item, checked: false }] },
+        list: { $push: [{ id: _.size(state.list), item: action.item, checked: false, order: _.size(state.list) + 1 }] },
       })
     case 'DELETE_ITEM':
       return update(state, {

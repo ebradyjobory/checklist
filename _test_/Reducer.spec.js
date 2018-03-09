@@ -16,8 +16,18 @@ describe('Test reducers',() => {
         id: 0,
         item: action.item,
         checked: false,
+        order: 1,
       }]
     })
+  })
+  it('Should reduce ADD_ITEM action with the right order', () => {
+    let action = createAction('ADD_ITEM', {item: 'read Dune'})
+    let state = reducer(initialState, action)
+    action = createAction('ADD_ITEM', {item: 'read another book'})
+    state = reducer(state, action)
+    expect(state.list.length).toBe(2)
+    expect(state.list[0].order).toBe(1)
+    expect(state.list[1].order).toBe(2)
   })
   it('Should reduce DELETE_ITEM action', () => {
     // Add an item
