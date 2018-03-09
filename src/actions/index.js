@@ -1,4 +1,5 @@
 // @flow
+
 export const addItem = (item: String) => {
   return {
     type: 'ADD_ITEM',

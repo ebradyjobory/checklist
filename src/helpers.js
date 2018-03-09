@@ -16,7 +16,7 @@ export const itemIsInPosition = (list: Array<Object>, id: Number, position: stri
           .id === id
 }
 
-export const swapOrders = (list: Array<Object>, id: Number, direction: number) => {
+export const swapOrder = (list: Array<Object>, id: Number, direction: number) => {
   let item
   let originalOrder
   let listCopy = list.slice()

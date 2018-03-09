@@ -75,4 +75,35 @@ describe('Test reducers',() => {
     // Other items should be reordered
     expect(state.list[1].order).toBe(1)
   })
+  it('Should handle edge cases of CHANGE_ORDER', () => {
+    // Add three items
+    let state = initialState
+    let action = createAction('ADD_ITEM', {item: 'read Dune'})
+    state = reducer(state, action)
+
+    action = createAction('ADD_ITEM', {item: 'read another book'})
+    state = reducer(state, action)
+    action = createAction('ADD_ITEM', {item: 'read a new SciFi book'})
+    state = reducer(state, action)
+
+    expect(state.list.length).toBe(3)
+
+    // Have the right orders
+    expect(state.list[0].order).toBe(1)
+    expect(state.list[1].order).toBe(2)
+    expect(state.list[2].order).toBe(3)
+    // Change order
+    action = createAction('CHANGE_ORDER', { id: 0, direction: -1 })
+    state = reducer(state, action)
+
+    expect(state.list[0].order).toBe(2)
+    expect(state.list[1].order).toBe(1)
+    expect(state.list[2].order).toBe(3)
+    // Move the middle item up
+    action = createAction('CHANGE_ORDER', { id: 0, direction: 1 })
+    state = reducer(state, action)
+    expect(state.list[1].order).toBe(2)
+    expect(state.list[0].order).toBe(1)
+    expect(state.list[2].order).toBe(3)
+  })
 })
