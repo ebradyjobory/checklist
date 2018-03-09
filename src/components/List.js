@@ -49,22 +49,26 @@ export default class Input extends Component<PropTypes, StateTypes> {
           _.sortBy(list, 'order').map(l => {
             return (
               <div className='item-list' key={l.id}>
-                <input
-                  type='checkbox'
-                  className='form-check-input'
-                  id={`item-${l.id}`}
-                  checked={l.checked}
-                  onChange={ (e) => this.onItemCheck(e, l.id) }
-                />
-                <label className='form-check-label' htmlFor={`item-${l.id}`} >{l.item}</label>
+                <div>
+                  <input
+                    type='checkbox'
+                    className='form-check-input'
+                    id={`item-${l.id}`}
+                    checked={l.checked}
+                    onChange={ (e) => this.onItemCheck(e, l.id) }
+                  />
+                  <label className='form-check-label' htmlFor={`item-${l.id}`} >{l.item}</label>
+                </div>
+                <div className='trash'>
+                  <i
+                    className='fa fa-trash'
+                    onClick={() => this.onItemDelete(l.id) }>
+                  </i>
+                </div>
                 <div className='order-btns'>
                   { ! itemIsInPosition(list, l.id, 'first') && <i className='fa fa-sort-up' onClick={ () => this.onOrderChnage(1, l.id) }></i> }
                   { ! itemIsInPosition(list, l.id, 'last') && <i className='fa fa-sort-down' onClick={ () => this.onOrderChnage(-1, l.id) }></i> }
                 </div>
-                <i
-                  className='fa fa-trash'
-                  onClick={() => this.onItemDelete(l.id) }
-                ></i>
               </div>
             )
           })

@@ -11,8 +11,7 @@ export const createAction = (type: String, dispatched: Object) => {
 
 export const itemIsInPosition = (list: Array<Object>, id: Number, position: string) => {
   return _.chain(list)
-          .sortBy('order')
-          [position]()
+          .sortBy('order')[position]()
           .value()
           .id === id
 }

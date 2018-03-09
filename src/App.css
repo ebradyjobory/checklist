@@ -45,14 +45,17 @@ i.fa.fa-trash {
   margin: 5px;
 }
 
+.item-list div {
+  flex: 1;
+}
+
 .check-all {
   margin: 32px 51px;
 }
 
-.order-btns {
-  display: flex;
-  flex: 1;
-  flex-flow: column;
+.order-btns, .trash {
+  display: grid;
+  text-align: right;
 }
 
 .fa.disabled {
