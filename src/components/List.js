@@ -13,7 +13,7 @@ type PropTypes = {
 type StateTypes = {}
 
 export default class Input extends Component<PropTypes, StateTypes> {
-  onItemCheck = (e: SyntheticEvent<*>, id: Number) => {
+  onItemCheck = (e: { target: { checked: Boolean } }, id: Number) => {
     const { onItemCheck } = this.props
     const { checked } = e.target
     onItemCheck(id, checked)

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 type PropTypes = {
-  onAddItem: Function,
+  onItemAdd: Function,
 }
 
 type StateTypes = {
@@ -13,7 +13,7 @@ export default class Input extends Component<PropTypes, StateTypes> {
   state = {
     value: ''
   }
-  onKeyDown = (e: SyntheticEvent<*>) => {
+  onKeyDown = (e: { target: EventTarget }) => {
     const { onItemAdd } = this.props
     if (e.target.value && (e.keyCode === 9 || e.keyCode === 13)) {
       onItemAdd(e.target.value)
@@ -21,7 +21,7 @@ export default class Input extends Component<PropTypes, StateTypes> {
       this.setState({ value: '' })
     }
   }
-  onChange = (e: SyntheticEvent<*>) => {
+  onChange = (e: { target: { value: string } }) => {
     this.setState({ value: e.target.value })
   }
   render() {
