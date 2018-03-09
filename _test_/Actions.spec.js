@@ -1,9 +1,14 @@
 import * as actions from '../src/actions'
 
-describe('Actions',() => {
+describe('Test actions', () => {
   it('Should create `addItem` action', () => {
     const item = 'testing'
     expect(actions.addItem(item)).toEqual({ type: 'ADD_ITEM', item })
+  })
+  it('Should create `deleteItem` action', () => {
+    const id = 0
+    // Delete an item
+    expect(actions.deleteItem(id)).toEqual({ type: 'DELETE_ITEM', id })
   })
   it('Should create `toggleItem action', () => {
     const id = 0

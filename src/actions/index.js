@@ -1,8 +1,15 @@
 // @flow
-export const addItem = (item: string) => {
+export const addItem = (item: String) => {
   return {
     type: 'ADD_ITEM',
     item, 
+  }
+}
+
+export const deleteItem = (id: Number) => {
+  return {
+    type: 'DELETE_ITEM',
+    id, 
   }
 }
 

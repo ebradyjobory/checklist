@@ -10,6 +10,10 @@ export default function appState(state = initialState, action) {
       return update(state, {
         list: { $push: [{ id: _.size(state.list), item: action.item, checked: false }] },
       })
+    case 'DELETE_ITEM':
+      return update(state, {
+        list: { $set: state.list.filter(l => l.id !== action.id) },
+      })
     case 'TOGGLE_ITEM':
       return update(state, {
         list: { $set: state.list.map(l => {

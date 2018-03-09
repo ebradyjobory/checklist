@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import * as actions from './actions'
 
 // Components
-import Input from './components/Input';
-import List from './components/List';
+import Input from './components/Input'
+import List from './components/List'
 
 
 // Styles
-import 'bootstrap/dist/css/bootstrap.css';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.css'
+import './App.css'
+import '../node_modules/font-awesome/css/font-awesome.css'
 
 export class App extends Component {
   render() {
-    const { state, dispatch } = this.props;
+    const { state, dispatch } = this.props
     return (
       <div className="container">
         <Input
-          onAddItem={
+          onItemAdd={
             item => dispatch(actions.addItem(item))
           }
         />
@@ -26,16 +27,19 @@ export class App extends Component {
           onItemCheck={
             (checked, id) => dispatch(actions.toggleItem(checked, id))
           }
+          onItemDelete={
+            id => dispatch(actions.deleteItem(id))
+          }
           onToggleAll={ () => dispatch(actions.toggleAll()) }
         />
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = ({ reducer }) => ({ state: reducer });
+const mapStateToProps = ({ reducer }) => ({ state: reducer })
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App)
 
   // <h3>
   //   Create a 'checklist' app that allows the following operations:

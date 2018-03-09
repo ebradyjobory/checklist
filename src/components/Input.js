@@ -14,9 +14,9 @@ export default class Input extends Component<PropTypes, StateTypes> {
     value: ''
   }
   onKeyDown = (e: SyntheticEvent<*>) => {
-    const { onAddItem } = this.props
+    const { onItemAdd } = this.props
     if (e.target.value && (e.keyCode === 9 || e.keyCode === 13)) {
-      onAddItem(e.target.value)
+      onItemAdd(e.target.value)
       // Reset input field value
       this.setState({ value: '' })
     }

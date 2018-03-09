@@ -1,3 +1,7 @@
+body {
+  background: #f1f2f6;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -18,7 +22,31 @@
   font-size: large;
 }
 
+.container {
+  width: 50%;
+  margin: 50px auto;
+}
+
+i.fa.fa-trash {
+  float: right;
+  font-size: 1.5rem;
+  color: #ff6b81;
+  cursor: pointer;
+}
+
+.item-list {
+  background: #ffffff;
+  box-shadow: 1px 1px 2px #888888;
+  padding: 32px 29px 31px 51px;
+  margin: 5px;
+}
+
+.check-all {
+  margin: 32px 51px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
